@@ -40,3 +40,4 @@ Works recursively through directories as well.
 
 * Fix -s and -e options.
 * Allow variable substitution in file path names themselves.
+* Generating statuc shell scripts that create the given file trees.
