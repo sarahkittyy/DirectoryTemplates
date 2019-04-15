@@ -12,6 +12,7 @@ Load::Load(int argc, char* argv[])
 
 	// clang-format off
 	options.add_options()
+	("h,help", "Display this help message.")
 	("i,in", "The json file to load.", value<std::string>())
 	("o,out", "The root directory of the output.", value<std::string>())
 	("k,keys", "A string of comma-separated key-value pairs.\nEx:key1=a,key2=b", value<std::string>());
@@ -19,6 +20,12 @@ Load::Load(int argc, char* argv[])
 
 	//Parse options.
 	auto opts = options.parse(argc, argv);
+
+	if (opts["help"].as<bool>())
+	{
+		std::cout << options.help();
+		std::exit(0);
+	}
 
 	//Pass the settings into the internal mOpts instance.
 	try

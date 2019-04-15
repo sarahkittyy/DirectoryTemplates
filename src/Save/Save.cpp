@@ -12,6 +12,7 @@ Save::Save(int argc, char* argv[])
 
 	// clang-format off
 	options.add_options()
+	("h,help", "Display this help message.")
 	("i,in", "The directory/file to save.", value<std::string>())
 	("o,out", "The output name.", value<std::string>())
 	("s,start", "The regex-compatible token to indicate the start of a variable.", value<std::string>()->default_value("\\$\\{"))
@@ -20,6 +21,12 @@ Save::Save(int argc, char* argv[])
 
 	//Parse options.
 	auto opts = options.parse(argc, argv);
+
+	if (opts["help"].as<bool>())
+	{
+		std::cout << options.help();
+		std::exit(0);
+	}
 
 	//Pass the settings into the internal mOpts instance.
 	try
